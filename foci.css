@@ -1,0 +1,267 @@
+:root {
+    --primary-color: #4e73df; 
+    --secondary-color: #51d35c; 
+    --background-color: #f9fafb; 
+    --text-color: #3c4d7c; 
+    --font-family: 'Roboto', sans-serif;
+    --history-bg: #fff4e6; 
+    --teams-bg: #d0f2f4; 
+    --gallery-bg: #f8e1e6; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 18px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--background-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-color);
+    list-style-type: none;
+    padding: 10px;
+    top: 100px;
+    left: 0;
+    border-radius: 6px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+section {
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#history {
+    background-color: var(--history-bg);
+}
+
+#best-teams {
+    background-color: var(--teams-bg);
+}
+
+#gallery {
+    background-color: var(--gallery-bg);
+}
+
+section h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+hr {
+    border: 1px solid var(--primary-color);
+    margin: 20px 0;
+}
+
+.gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.gallery img {
+    width: 18%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+section:hover {
+    background-color: #ffffff;
+    transform: translateY(-7px);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 18px 0;
+    text-align: center;
+    box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-size: 1.1rem;
+}
+
+iframe {
+    width: 85%;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+iframe:hover {
+    transform: scale(1.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #fff;
+    color: var(--text-color);
+}
+
+tr:nth-child(even) td {
+    background-color: #f7f7f7;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+caption {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+    color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu {
+        font-size: 1.1rem;
+    }
+
+    table {
+        font-size: 0.95rem;
+    }
+
+    th, td {
+        padding: 12px;
+    }
+}
