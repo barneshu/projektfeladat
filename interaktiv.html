@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teszt & Játék – II. Világháború</title>
+  <link rel="stylesheet" href="vilaghaboru.css">
+  <script defer src="vilaghaboru.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Teszt & Játék</h1>
+      <div class="ora-container">
+        <span id="digitalis-ora">00:00:00</span>
+      </div>      
+      <button id="theme-toggle">🌙 / ☀️</button>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Főoldal</a></li>
+        <li><a href="tananyag.html">Tananyag</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section>
+        <h2>Tudásellenőrző teszt</h2>
+        <form id="quiz-form">
+          <p>1. Melyik évben tört ki a II. világháború?</p>
+          <label><input type="radio" name="q1" value="A"> 1918</label><br>
+          <label><input type="radio" name="q1" value="B"> 1939</label><br>
+          <label><input type="radio" name="q1" value="C"> 1941</label><br>
+          <label><input type="radio" name="q1" value="D"> 1945</label><br>
+
+          <p>2. Ki volt a Szovjetunió vezetője a háború alatt?</p>
+          <select name="q2">
+            <option value="A">Vlagyimir Lenin</option>
+            <option value="B">Joszif Sztálin</option>
+            <option value="C">Mihail Gorbacsov</option>
+            <option value="D">Leonyid Brezsnyev</option>
+          </select>
+
+          <p>3. Hol történt az 1945-ös atombomba-támadás?</p>
+          <select name="kerdes3">
+            <option value="hirosima">Hirosima</option>
+            <option value="tokio">Tokió</option>
+            <option value="osaka">Oszaka</option>
+            <option value="szapporo">Szapporó</option>
+          </select>
+
+          <p>4. Melyik országot támadta meg Németország a Barbarossa-hadművelet során?</p>
+          <input type="text" name="q4">
+
+          <p>5. Mi volt a náci Németország fő célja a holokauszt során?</p>
+          <input type="text" name="q5">
+
+          <button type="submit">Ellenőrzés</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Memóriajáték</h2>
+        <p>Párosítsd a II. világháborúhoz kapcsolódó emojikat!</p>
+        <div id="game-board" class="game-board"></div>
+        <button id="restart-btn" style="display: none;">Újraindítás</button>
+      </section>
+    </main>
+    <footer>
+      <p>Készítette: Virág Barnabás | 2025</p>
+    </footer>
+  </div>
+</body>
+</html>
