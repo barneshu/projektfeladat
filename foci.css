@@ -1,267 +1,407 @@
+/* Világos és sötét mód alapszínek */
 :root {
-    --primary-color: #4e73df; 
-    --secondary-color: #51d35c; 
-    --background-color: #f9fafb; 
-    --text-color: #3c4d7c; 
-    --font-family: 'Roboto', sans-serif;
-    --history-bg: #fff4e6; 
-    --teams-bg: #d0f2f4; 
-    --gallery-bg: #f8e1e6; 
+  --bg: #f0f2f5;
+  --text: #2c3e50;
+  --primary: #1abc9c;
+  --accent: #16a085;
+  --card: #ffffff;
+  --border: #dcdcdc;
+  --shadow: rgba(0, 0, 0, 0.1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body.dark-mode {
+  --bg: #1e272e;
+  --text: #ecf0f1;
+  --primary: #3498db;
+  --accent: #2980b9;
+  --card: #2f3640;
+  --border: #444;
+  --shadow: rgba(255, 255, 255, 0.05);
 }
 
+/* Alap stílusok – RETRÓ II. világháborús hangulat */
 body {
-    font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: var(--text-color);
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f1e9;
+  color: #2d2d2d;
+  background-image: url('paper-texture.jpg');
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-header h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
+header, footer {
+  background-color: #3b3b3b;
+  color: #fdf6e3;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  font-family: 'Georgia', serif;
+  letter-spacing: 1px;
 }
 
-.main-content {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 20px;
-    padding: 20px;
+.ora-container {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-    background-color: var(--secondary-color);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+#theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 2px solid #fdf6e3;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #fdf6e3;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
 }
 
-.menu {
-    list-style-type: none;
-    padding: 0;
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
+  margin: 1rem 0;
 }
 
-.menu li {
-    margin: 18px 0;
+nav ul li a {
+  text-decoration: none;
+  color: #3b3b3b;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  border-bottom: 2px dotted transparent;
 }
 
-.menu a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-.menu a:hover {
-    color: var(--background-color);
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--primary-color);
-    list-style-type: none;
-    padding: 10px;
-    top: 100px;
-    left: 0;
-    border-radius: 6px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-    opacity: 1;
+nav ul li a:hover {
+  border-color: #3b3b3b;
 }
 
 main {
-    display: flex;
+  padding: 1rem;
+}
+
+/* Feature szekció */
+.features {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #eee4d5;
+  border-top: 3px dashed #3b3b3b;
+  border-bottom: 3px dashed #3b3b3b;
+  color: black;
+}
+
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.feature-item {
+  background: #fffaf3;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 1.5rem;
+  width: 250px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.emoji-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background-color: #fffaf3;
+  border: 1px solid #999;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  color: transparent;
+  transition: transform 0.2s ease, background-color 0.3s, color 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card.flipped {
+  background-color: #eae2cc;
+  color: #000;
+}
+
+/* Idővonal */
+.timeline {
+  border-left: 4px solid #5a473e;
+  padding-left: 2rem;
+  margin-top: 3rem;
+  position: relative;
+  background-color: #fffaf3;
+}
+
+.timeline h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Georgia', serif;
+}
+
+.timeline-item {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #5a473e;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+  background-color: #fdf6e3;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.1rem;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #5a473e;
+  border-radius: 50%;
+}
+
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ddd4c2;
+}
+
+.dark-mode header, .dark-mode footer {
+  background-color: #000;
+  color: #ddd4c2;
+}
+
+.dark-mode .container,
+.dark-mode main,
+.dark-mode .card,
+.dark-mode .timeline-content,
+.dark-mode .timeline,
+.dark-mode nav ul li a {
+  color: #ddd4c2;
+  background-color: transparent;
+}
+
+.dark-mode .card {
+  background-color: #3a3a3a;
+  border: 1px solid #777;
+  color: transparent;
+}
+
+.dark-mode .card.flipped {
+  background-color: #5a5a5a;
+  color: #fff;
+}
+
+.dark-mode .timeline-date {
+  color: #f4c471;
+}
+
+.dark-mode .timeline-item::before {
+  background-color: #f4c471;
+}
+
+
+/* Reszponzív elrendezés */
+@media (max-width: 768px) {
+  .feature-grid {
     flex-direction: column;
-    gap: 30px;
-}
+    align-items: center;
+  }
 
-section {
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
+  .feature-item {
+    width: 90%;
+  }
 
-#history {
-    background-color: var(--history-bg);
-}
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
 
-#best-teams {
-    background-color: var(--teams-bg);
-}
+  nav ul li {
+    margin: 0.5rem 0;
+  }
 
-#gallery {
-    background-color: var(--gallery-bg);
-}
+  header h1 {
+    font-size: 1.5rem;
+  }
 
-section h2 {
-    font-size: 2.2rem;
-    color: var(--primary-color);
-    margin-bottom: 12px;
-}
-
-section p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-}
-
-hr {
-    border: 1px solid var(--primary-color);
-    margin: 20px 0;
-}
-
-.gallery {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-}
-
-.gallery img {
-    width: 18%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.1) rotate(3deg);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-section:hover {
-    background-color: #ffffff;
-    transform: translateY(-7px);
-}
-
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 18px 0;
+  .ora-container {
+    font-size: 1rem;
+    margin-top: 0.5rem;
     text-align: center;
-    box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
-}
+  }
 
-footer p {
-    font-size: 1.1rem;
-}
-
-iframe {
-    width: 85%;
-    height: 500px;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  #theme-toggle {
+    position: static;
     display: block;
-    margin: 0 auto;
-    transition: transform 0.3s ease;
+    margin: 1rem auto 0 auto;
+    font-size: 1.5rem;
+  }
 }
 
-iframe:hover {
-    transform: scale(1.05);
+@media (max-width: 480px) {
+  .btn-start {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .emoji-icon {
+    font-size: 2.5rem;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  iframe {
+    height: 200px;
+  }
+
+  .ora-container {
+    font-size: 0.9rem;
+  }
+
+  #theme-toggle {
+    font-size: 1.3rem;
+  }
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #fffaf3;
+  color: #2d2d2d;
+  border: 2px solid #5a473e;
 }
 
-th, td {
-    padding: 16px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: 1rem;
+table th,
+table td {
+  border: 1px solid #5a473e;
+  padding: 0.75rem 1rem;
+  text-align: left;
 }
 
-th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
+table th {
+  background-color: #f4e3c1;
+  font-weight: bold;
 }
 
-td {
-    background-color: #fff;
-    color: var(--text-color);
+table tr:nth-child(even) {
+  background-color: #fdf6e3;
 }
 
-tr:nth-child(even) td {
-    background-color: #f7f7f7;
+/* Sötét mód */
+.dark-mode table {
+  background-color: #2e2e2e;
+  color: #ddd4c2;
+  border-color: #5a473e;
 }
 
-tr:hover {
-    background-color: #f2f2f2;
+.dark-mode table th {
+  background-color: #3a3a3a;
 }
 
-caption {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: left;
-    color: var(--primary-color);
+.dark-mode table td,
+.dark-mode table th {
+  border-color: #5a473e;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.dark-mode table tr:nth-child(even) {
+  background-color: #1f1f1f;
 }
 
-header {
-    animation: fadeIn 1s ease-in-out;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('grunge-paper.jpg');
+  background-size: cover;
+  opacity: 0.1;
+  z-index: -1;
 }
 
-@media screen and (max-width: 768px) {
-    .main-content {
-        grid-template-columns: 1fr;
-    }
+header h1 {
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px dashed #fdf6e3;
+  padding-bottom: 0.5rem;
+}
 
-    .gallery {
-        flex-direction: column;
-        align-items: center;
-    }
+footer {
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
 
-    .menu {
-        font-size: 1.1rem;
-    }
 
-    table {
-        font-size: 0.95rem;
-    }
+h2, h3 {
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+  color: #3b3b3b;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+}
 
-    th, td {
-        padding: 12px;
-    }
+.dark-mode h2,
+.dark-mode h3 {
+  color: #f4c471;
+  border-color: #5a473e;
+}
+
+.feature-item {
+  background-image: url('faint-lines.png');
+  background-repeat: repeat;
+}
+
+.dark-mode#talalsz{
+  color: #000;
 }
