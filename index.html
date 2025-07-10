@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Nádasdy Castle – A Timeless Experience, Reimagined</title>
+  <title>Nádasdy-kastély – Időtlen Élmény, Újragondolva</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Refined Tudor-Modern Palette */
+      /* Polished Fusion Palette */
       --background-dark: #121822;
       --text-primary: #e5e7eb;
       --text-secondary: #9ca3af;
-      --accent-gold: #c5a35a;
+      --accent-gold: #c5a35a; /* A sophisticated, desaturated gold */
       --glass-bg: rgba(31, 41, 55, 0.4);
       --glass-border: rgba(197, 163, 90, 0.2);
     }
@@ -26,22 +26,29 @@
       background-image: linear-gradient(rgba(18, 24, 34, 0.6), rgba(18, 24, 34, 0.6)), url('https://www.transparenttextures.com/patterns/dark-tapestry.png');
       line-height: 1.8;
       overflow-x: hidden;
-      transition: overflow 0.3s; /* Smooth transition for scroll lock */
+      transition: overflow 0.3s;
     }
-    body.lightbox-open {
-      overflow: hidden;
-    }
+    body.lightbox-open { overflow: hidden; }
     ::selection { background: var(--accent-gold); color: var(--background-dark); }
 
     /* The Fusion Core: Typography & Glow */
     h1, h2, h3, .cta-button { font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
-    h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; color: white; line-height: 1.1; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      text-shadow: 0 0 20px rgba(0,0,0,0.5);
+      color: transparent;
+      background: linear-gradient(120deg, var(--accent-gold) 20%, white 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
     h2 { font-size: clamp(2.2rem, 6vw, 3rem); color: var(--accent-gold); margin-bottom: 40px; filter: drop-shadow(0 0 10px rgba(197, 163, 90, 0.3)); }
     p { color: var(--text-secondary); margin-bottom: 1.5em; max-width: 70ch; }
     a { color: var(--accent-gold); text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
     a:not(.cta-button, .gallery-item):hover { filter: brightness(1.2); text-decoration: none;}
 
-    /* Layout & The Modern Vitrine Effect */
+    /* Layout & Modern Vitrine Effect */
     .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
     header { position: sticky; top: 0; z-index: 1000; background: rgba(18, 24, 34, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); padding: 20px 0; width: 100%; }
     .nav-wrapper { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; }
@@ -52,7 +59,7 @@
     nav a.active::after { content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 5px var(--accent-gold); }
     section.content-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 6vw, 60px); margin-bottom: 60px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); }
     
-    /* Hero Section with Parallax */
+    /* Hero Section */
     .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; position: relative; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('DJI_0143_retus2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
     .hero-text-wrapper { transition: transform 0.1s linear; }
     .hero-subtitle { font-size: 1.3rem; color: var(--accent-gold); margin-top: 1rem; }
@@ -63,30 +70,11 @@
     .gallery-item img { width:100%; height:100%; object-fit: cover; transition: transform .4s ease, filter .4s ease; filter: saturate(0.9) brightness(0.9); }
     .gallery-item:hover img { transform: scale(1.1); filter: saturate(1.2) brightness(1); }
     
-    #lightbox {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(18, 24, 34, 0.9);
-      z-index: 2000;
-      display: flex; justify-content: center; align-items: center;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-      backdrop-filter: blur(5px);
-    }
+    #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 24, 34, 0.9); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; backdrop-filter: blur(5px); }
     #lightbox.visible { opacity: 1; visibility: visible; }
-    #lightbox img {
-      max-width: 90%; max-height: 90vh;
-      box-shadow: 0 0 50px rgba(0,0,0,0.7);
-      border-radius: 4px;
-      transform: scale(0.8);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+    #lightbox img { max-width: 90%; max-height: 90vh; box-shadow: 0 0 50px rgba(0,0,0,0.7); border-radius: 4px; transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     #lightbox.visible img { transform: scale(1); }
-    #close-lightbox {
-      position: absolute; top: 20px; right: 30px;
-      font-size: 3rem; color: white;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+    #close-lightbox { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: white; cursor: pointer; transition: transform 0.3s ease; border: none; background: none; }
     #close-lightbox:hover { transform: scale(1.2) rotate(90deg); }
 
     /* Other styles... */
@@ -106,7 +94,7 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
     @media (min-width: 768px) { .feature-item { grid-template-columns: repeat(2, 1fr); text-align: left; } .feature-item.reverse .feature-text { grid-area: 1 / 2; } .feature-item.reverse .feature-image { grid-area: 1 / 1; } }
     @media (max-width: 1024px) { .container { padding-top: 60px; padding-bottom: 60px; } }
-    @media (max-width: 767px) { html { scroll-padding-top: 80px; } h1 { line-height: 1.2; } h2 { font-size: clamp(1.8rem, 10vw, 2.2rem); margin-bottom: 20px; } .hero { background-attachment: scroll; min-height: 90vh; } header { padding: 15px 0; } .nav-wrapper { flex-direction: column; } nav { gap: 5px; } nav a { padding: 8px 12px; font-size: 0.8rem; } #lang-switcher { margin-left: 0; margin-top: 10px; } .container { padding-left: 15px; padding-right: 15px; } section.content-section { padding: 30px 20px; margin-bottom: 40px; } .feature-item { gap: 30px; } .feature-item .feature-text, .feature-item.reverse .feature-text { grid-area: auto; } .feature-item .feature-image, .feature-item.reverse .feature-image { grid-area: auto; } p { max-width: 100%; } }
+    @media (max-width: 767px) { html { scroll-padding-top: 80px; } h1 { line-height: 1.2; } h2 { font-size: clamp(1.8rem, 10vw, 2.2rem); margin-bottom: 20px; } .hero { background-attachment: scroll; min-height: 90vh; } header { padding: 15px 0; } .nav-wrapper { flex-direction: column; } #lang-switcher { margin-left: 0; margin-top: 10px; } nav { gap: 5px; } nav a { padding: 8px 12px; font-size: 0.8rem; } .container { padding-left: 15px; padding-right: 15px; } section.content-section { padding: 30px 20px; margin-bottom: 40px; } .feature-item { gap: 30px; } .feature-item .feature-text, .feature-item.reverse .feature-text { grid-area: auto; } .feature-item .feature-image, .feature-item.reverse .feature-image { grid-area: auto; } p { max-width: 100%; } }
   </style>
 </head>
 <body>
@@ -114,21 +102,21 @@
   <header>
     <div class="nav-wrapper">
       <nav id="navbar">
-        <a href="#welcome" class="active" data-lang-en="Welcome" data-lang-hu="Kezdőlap">Welcome</a>
-        <a href="#story" data-lang-en="The Story" data-lang-hu="A Történet">The Story</a>
-        <a href="#experience" data-lang-en="The Experience" data-lang-hu="Az Élmény">The Experience</a>
-        <a href="#gallery" data-lang-en="Gallery" data-lang-hu="Galéria">Gallery</a>
-        <a href="#info" data-lang-en="Plan Your Visit" data-lang-hu="Tervezd meg a látogatást">Plan Your Visit</a>
+        <a href="#welcome" class="active" data-lang-hu="Kezdőlap" data-lang-en="Welcome">Kezdőlap</a>
+        <a href="#story" data-lang-hu="A Történet" data-lang-en="The Story">A Történet</a>
+        <a href="#experience" data-lang-hu="Az Élmény" data-lang-en="The Experience">Az Élmény</a>
+        <a href="#gallery" data-lang-hu="Galéria" data-lang-en="Gallery">Galéria</a>
+        <a href="#info" data-lang-hu="Tervezd meg a látogatást" data-lang-en="Plan Your Visit">Tervezd meg a látogatást</a>
       </nav>
-      <button id="lang-switcher" title="Switch Language">Magyar</button>
+      <button id="lang-switcher" title="Switch Language">English</button>
     </div>
   </header>
 
   <main>
     <section class="hero" id="welcome">
       <div class="hero-text-wrapper">
-        <h1 class="reveal" data-lang-en="Nádasdy Castle" data-lang-hu="Nádasdy-kastély">Nádasdy Castle</h1>
-        <p class="hero-subtitle reveal" style="transition-delay: 0.2s;" data-lang-en="A Timeless Experience, Reimagined" data-lang-hu="Időtlen Élmény, Újragondolva">A Timeless Experience, Reimagined</p>
+        <h1 class="reveal" data-lang-hu="Nádasdy-kastély" data-lang-en="Nádasdy Castle">Nádasdy-kastély</h1>
+        <p class="hero-subtitle reveal" style="transition-delay: 0.2s;" data-lang-hu="Időtlen Élmény, Újragondolva" data-lang-en="A Timeless Experience, Reimagined">Időtlen Élmény, Újragondolva</p>
       </div>
     </section>
 
@@ -137,55 +125,55 @@
           <div class="feature-grid">
               <div class="feature-item">
                   <div class="feature-text">
-                      <h2 data-lang-en="A Legacy of Love & Innovation" data-lang-hu="A Szerelem és Innováció Öröksége">A Legacy of Love & Innovation</h2>
-                      <p data-lang-en="Born from a romance between Count Ferenc Nádasdy and Countess Ilona Zichy, this Tudor-style marvel was a masterpiece of its time. Completed in 1876, it boasted then-futuristic technology. After its revival, the castle now stands as a testament to both its romantic soul and its innovative spirit." data-lang-hu="Nádasdy Ferenc gróf és Zichy Ilona grófnő szerelméből született ez a Tudor-stílusú csoda, amely korának mesterműve volt. Az 1876-ban befejezett épület futurisztikus technológiával büszkélkedett. Újjászületése után a kastély ma romantikus lelkének és innovatív szellemének egyaránt tanúbizonysága.">Born from a romance between Count Ferenc Nádasdy and Countess Ilona Zichy, this Tudor-style marvel was a masterpiece of its time. Completed in 1876, it boasted then-futuristic technology. After its revival, the castle now stands as a testament to both its romantic soul and its innovative spirit.</p>
+                      <h2 data-lang-hu="A Szerelem és Innováció Öröksége" data-lang-en="A Legacy of Love & Innovation">A Szerelem és Innováció Öröksége</h2>
+                      <p data-lang-hu="Nádasdy Ferenc gróf és Zichy Ilona grófnő szerelméből született ez a Tudor-stílusú csoda, amely korának mesterműve volt. Az 1876-ban befejezett épület futurisztikus technológiával büszkélkedett. Újjászületése után a kastély ma romantikus lelkének és innovatív szellemének egyaránt tanúbizonysága." data-lang-en="Born from a romance between Count Ferenc Nádasdy and Countess Ilona Zichy, this Tudor-style marvel was a masterpiece of its time. Completed in 1876, it boasted then-futuristic technology. After its revival, the castle now stands as a testament to both its romantic soul and its innovative spirit.">Nádasdy Ferenc gróf és Zichy Ilona grófnő szerelméből született ez a Tudor-stílusú csoda...</p>
                   </div>
                   <div class="feature-image">
-                      <img src="1920_epiteszforum-visszaforog-az-ido-kereke--a-nadasdladanyi-nadasdy-kastely-ujjateremtesi-programja-1-60-2020-11-09-130415.jpeg" alt="The magnificent two-story library" data-alt-en="The magnificent two-story library" data-alt-hu="A lenyűgöző, kétszintes könyvtár">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/N%C3%A1dasdy_Castle_interior_-_library.jpg" alt="A lenyűgöző, kétszintes könyvtár" data-alt-hu="A lenyűgöző, kétszintes könyvtár" data-alt-en="The magnificent two-story library">
                   </div>
               </div>
           </div>
       </section>
 
       <section id="experience" class="content-section reveal">
-        <h2 data-lang-en="The Experience" data-lang-hu="Az Élmény">The Experience</h2>
-        <p data-lang-en="Forget passive observation. Our exhibition, 'The Legend of the Castle, Revived,' puts you at the heart of the narrative." data-lang-hu="Felejtsd el a passzív szemlélődést! 'Az újjáéledt kastély legendája' című kiállításunk a történet középpontjába helyez téged.">Forget passive observation. Our exhibition, 'The Legend of the Castle, Revived,' puts you at the heart of the narrative.</p>
+        <h2 data-lang-hu="Az Élmény" data-lang-en="The Experience">Az Élmény</h2>
+        <p data-lang-hu="Felejtsd el a passzív szemlélődést! 'Az újjáéledt kastély legendája' című kiállításunk a történet középpontjába helyez téged." data-lang-en="Forget passive observation. Our exhibition, 'The Legend of the Castle, Revived,' puts you at the heart of the narrative.">Felejtsd el a passzív szemlélődést!...</p>
         <ul>
-          <li data-lang-en="<strong>Digital Storytelling:</strong> Unlock augmented reality layers and untold stories with your personal tablet guide." data-lang-hu="<strong>Digitális Történetmesélés:</strong> Fedezz fel kiterjesztett valóság rétegeket és elmondatlan történeteket a személyes táblagéped segítségével."><strong>Digital Storytelling:</strong> Unlock augmented reality layers and untold stories with your personal tablet guide.</li>
-          <li data-lang-en="<strong>Ancestors Awakened:</strong> Witness the Nádasdy family portraits come alive in the Hall of Ancestors, sharing their tales through digital magic." data-lang-hu="<strong>Ébredő Ősök:</strong> Légy tanúja, ahogy a Nádasdy család portréi életre kelnek az Ősök Csarnokában, és digitális varázslattal mesélik el történeteiket."><strong>Ancestors Awakened:</strong> Witness the Nádasdy family portraits come alive in the Hall of Ancestors, sharing their tales through digital magic.</li>
-          <li data-lang-en="<strong>History in Your Hands:</strong> Create your own memories by trying on period costumes or sending a message on a vintage telegraph." data-lang-hu="<strong>Történelem a kezedben:</strong> Szerezz saját emlékeket korhű jelmezek felpróbálásával vagy egy üzenet elküldésével a korabeli távírón."><strong>History in Your Hands:</strong> Create your own memories by trying on period costumes or sending a message on a vintage telegraph.</li>
+          <li data-lang-hu="<strong>Digitális Történetmesélés:</strong> Fedezz fel kiterjesztett valóság rétegeket és elmondatlan történeteket a személyes táblagéped segítségével." data-lang-en="<strong>Digital Storytelling:</strong> Unlock augmented reality layers and untold stories with your personal tablet guide."><strong>Digitális Történetmesélés:</strong>...</li>
+          <li data-lang-hu="<strong>Ébredő Ősök:</strong> Légy tanúja, ahogy a Nádasdy család portréi életre kelnek az Ősök Csarnokában, és digitális varázslattal mesélik el történeteiket." data-lang-en="<strong>Ancestors Awakened:</strong> Witness the Nádasdy family portraits come alive in the Hall of Ancestors, sharing their tales through digital magic."><strong>Ébredő Ősök:</strong>...</li>
+          <li data-lang-hu="<strong>Történelem a kezedben:</strong> Szerezz saját emlékeket korhű jelmezek felpróbálásával vagy egy üzenet elküldésével a korabeli távírón." data-lang-en="<strong>History in Your Hands:</strong> Create your own memories by trying on period costumes or sending a message on a vintage telegraph."><strong>Történelem a kezedben:</strong>...</li>
         </ul>
       </section>
       
       <section id="gallery" class="content-section reveal">
-        <h2 data-lang-en="Gallery" data-lang-hu="Galéria">Gallery</h2>
+        <h2 data-lang-hu="Galéria" data-lang-en="Gallery">Galéria</h2>
         <div class="gallery">
-          <a class="gallery-item"><img src="DJI_0581_2.2-500x500.jpg" alt="Hall of Ancestors" data-alt-en="Hall of Ancestors" data-alt-hu="Az Ősök Csarnoka"></a>
-          <a class="gallery-item"><img src="dsc03466-scaled.jpg" alt="Elegant wooden staircase" data-alt-en="Elegant wooden staircase" data-alt-hu="Elegáns falépcső"></a>
-          <a class="gallery-item"><img src="nadasdweb6-scaled.jpg" alt="Conservatory cafe" data-alt-en="Conservatory cafe" data-alt-hu="A télikert kávézó"></a>
-          <a class="gallery-item"><img src="nadasdweb8-scaled.jpg" alt="Castle and lake" data-alt-en="Castle and lake" data-alt-hu="A kastély és a tó"></a>
+          <a class="gallery-item"><img src="DJI_0581_2.2-500x500.jpg" alt="Az Ősök Csarnoka" data-alt-hu="Az Ősök Csarnoka" data-alt-en="Hall of Ancestors"></a>
+          <a class="gallery-item"><img src="nadasdweb6-scaled.jpg" alt="Kastély külső, részletekkel" data-alt-hu="Kastély külső, részletekkel" data-alt-en="Castle exterior with details"></a>
+          <a class="gallery-item"><img src="nadasdweb8-scaled.jpg" alt="A télikert kávézó" data-alt-hu="A télikert kávézó" data-alt-en="Conservatory cafe"></a>
+          <a class="gallery-item"><img src="dsc03466-scaled.jpg" alt="Az Ősök Csarnoka belső tere" data-alt-hu="Az Ősök Csarnoka belső tere" data-alt-en="Hall of Ancestors interior"></a>
         </div>
       </section>
 
       <section id="info" class="content-section reveal">
-          <h2 data-lang-en="Claim Your Ticket to the Past" data-lang-hu="Váltsd meg a jegyed a múltba">Claim Your Ticket to the Past</h2>
-          <p style="text-align: center; max-width: 60ch; margin: 0 auto 30px;" data-lang-en="Book online to secure your preferred time. We look forward to welcoming you." data-lang-hu="Foglalj online, hogy biztosítsd a neked megfelelő időpontot. Szeretettel várunk.">Book online to secure your preferred time. We look forward to welcoming you.</p>
+          <h2 data-lang-hu="Váltsd meg a jegyed a múltba" data-lang-en="Claim Your Ticket to the Past">Váltsd meg a jegyed a múltba</h2>
+          <p style="text-align: center; max-width: 60ch; margin: 0 auto 30px;" data-lang-hu="Foglalj online, hogy biztosítsd a neked megfelelő időpontot. Szeretettel várunk." data-lang-en="Book online to secure your preferred time. We look forward to welcoming you.">Foglalj online, hogy biztosítsd a neked megfelelő időpontot...</p>
           <div style="text-align: center;">
-              <a href="https://nadasdladanyikastely.hu/jegyvasarlas/" target="_blank" class="cta-button" data-lang-en="Book Your Journey" data-lang-hu="Foglald le az utazásod">Book Your Journey</a>
+              <a href="https://nadasdladanyikastely.hu/jegyvasarlas/" target="_blank" class="cta-button" data-lang-hu="Foglald le az utazásod" data-lang-en="Book Your Journey">Foglald le az utazásod</a>
           </div>
       </section>
     </div>
   </main>
   
   <div id="lightbox">
-    <span id="close-lightbox" title="Close">×</span>
+    <button id="close-lightbox" title="Close">×</button>
     <img id="lightbox-image" src="" alt="">
   </div>
   
   <button id="backToTop" title="Back to top">↑</button>
 
   <footer>
-    <p data-lang-en="© Nádasdy Castle, Nádasdladány. Where legacy meets innovation." data-lang-hu="© Nádasdy-kastély, Nádasdladány. Ahol az örökség és az innováció találkozik.">© Nádasdy Castle, Nádasdladány. Where legacy meets innovation.</p>
+    <p data-lang-hu="© Nádasdy-kastély, Nádasdladány. Ahol az örökség és az innováció találkozik." data-lang-en="© Nádasdy Castle, Nádasdladány. Where legacy meets innovation.">© Nádasdy-kastély, Nádasdladány...</p>
   </footer>
 
   <script>
@@ -194,25 +182,35 @@
         window.scrollTo(0, 0);
 
         // --- LANGUAGE SWITCHER ---
-        let currentLang = 'en';
+        let currentLang = 'hu'; // Default language is Hungarian
         const langSwitcher = document.getElementById('lang-switcher');
-        const translatableElements = document.querySelectorAll('[data-lang-en], [data-alt-en]');
-        function switchLanguage() {
-            currentLang = currentLang === 'en' ? 'hu' : 'en';
+        const translatableElements = document.querySelectorAll('[data-lang-hu], [data-alt-hu]');
+
+        function applyLanguage(lang) {
             translatableElements.forEach(el => {
-                if (el.dataset.langEn) {
-                    el.innerHTML = currentLang === 'hu' ? el.dataset.langHu : el.dataset.langEn;
+                const langKey = lang === 'hu' ? 'langHu' : 'langEn';
+                const altKey = lang === 'hu' ? 'altHu' : 'altEn';
+
+                if (el.dataset[langKey]) {
+                    el.innerHTML = el.dataset[langKey];
                 }
-                if (el.dataset.altEn) {
-                    el.alt = currentLang === 'hu' ? el.dataset.altHu : el.dataset.altEn;
+                if (el.dataset[altKey]) {
+                    el.alt = el.dataset[altKey];
                 }
             });
-            langSwitcher.textContent = currentLang === 'en' ? 'Magyar' : 'English';
-            document.documentElement.lang = currentLang;
+            langSwitcher.textContent = lang === 'hu' ? 'English' : 'Magyar';
+            document.documentElement.lang = lang;
+            currentLang = lang;
         }
-        langSwitcher.addEventListener('click', switchLanguage);
 
-        // --- LIGHTBOX GALLERY ---
+        langSwitcher.addEventListener('click', () => {
+            const newLang = currentLang === 'hu' ? 'en' : 'hu';
+            applyLanguage(newLang);
+        });
+        
+        applyLanguage(currentLang);
+        
+        // --- LIGHTBOX GALLERY LOGIC ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const closeBtn = document.getElementById('close-lightbox');
@@ -233,7 +231,7 @@
 
         galleryItems.forEach(item => {
             item.addEventListener('click', (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Prevents link-like behavior
                 openLightbox(item);
             });
         });
