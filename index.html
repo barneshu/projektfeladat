@@ -1,59 +1,255 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>II. Világháború Oktatóoldal</title>
-  <link rel="stylesheet" href="vilaghaboru.css">
-  <script defer src="vilaghaboru.js"></script>
+  <title>Nádasdy Castle – A Timeless Experience, Reimagined</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Polished Fusion Palette */
+      --background-dark: #121822;
+      --text-primary: #e5e7eb;
+      --text-secondary: #9ca3af;
+      --accent-gold: #eab308; /* A richer, more sophisticated gold */
+      --glass-bg: rgba(31, 41, 55, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-padding-top: 100px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Lora', serif;
+      color: var(--text-primary);
+      background-color: var(--background-dark);
+      background-image: linear-gradient(rgba(18, 24, 34, 0.5), rgba(18, 24, 34, 0.5)), url('https://www.transparenttextures.com/patterns/dark-denim-3.png');
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, nav a, .cta-button { font-family: 'Poppins', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+    h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; color: white; line-height: 1.1; }
+    h2 { font-size: clamp(2.2rem, 6vw, 3rem); color: var(--accent-gold); margin-bottom: 40px; }
+    p { color: var(--text-secondary); margin-bottom: 1.5em; max-width: 70ch; }
+
+    /* LAYOUT & SECTIONS */
+    .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
+    header {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(18, 24, 34, 0.75);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 20px 0; width: 100%;
+    }
+    nav { display:flex; justify-content:center; flex-wrap: wrap; gap:15px; }
+    nav a { color: var(--text-primary); text-decoration:none; padding: 10px 20px; border-radius: 8px; transition: all .3s ease; position: relative; }
+    nav a:hover { color: white; background: var(--glass-bg); }
+    nav a.active { color: var(--accent-gold); }
+    nav a.active::after {
+      content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; background: var(--accent-gold); border-radius: 50%;
+    }
+    
+    section.content-section {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: clamp(30px, 6vw, 60px);
+      margin-bottom: 60px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 20px; position: relative;
+      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('DJI_0143_retus2.jpg');
+      background-size: cover; background-position: center; background-attachment: fixed;
+    }
+    .hero-text-wrapper { transition: transform 0.1s linear; } /* For 3D mouse effect */
+    .hero-subtitle { font-size: 1.3rem; color: var(--accent-gold); margin-top: 1rem; }
+
+    /* INTERACTIVE & DECORATIVE ELEMENTS */
+    ul { list-style: none; padding-left: 0; }
+    ul li { margin-bottom: 15px; padding-left: 35px; position:relative; }
+    ul li::before { content: "›"; color: var(--accent-gold); position: absolute; left: 10px; font-weight: bold; font-size: 1.8rem; line-height: 1; }
+    
+    .link-underline {
+      position: relative; color: var(--accent-gold); text-decoration: none; font-weight: bold;
+    }
+    .link-underline::after {
+      content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: -4px; left: 0;
+      background-color: var(--accent-gold); transform-origin: bottom right; transition: transform 0.25s ease-out;
+    }
+    .link-underline:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+    /* DYNAMIC GALLERY */
+    .gallery { display:grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+    .gallery a { display: block; overflow: hidden; border-radius:16px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    .gallery img {
+      width:100%; height:100%; object-fit: cover;
+      transition: transform .4s ease, filter .4s ease;
+      filter: saturate(0.9) brightness(0.9);
+    }
+    .gallery a:hover img { transform: scale(1.1); filter: saturate(1.2) brightness(1); }
+
+    /* FEATURE GRID - Asymmetrical Layout */
+    .feature-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
+    .feature-item { display: grid; grid-template-columns: 1fr; align-items: center; gap: 40px; }
+    @media (min-width: 768px) {
+      .feature-item { grid-template-columns: repeat(2, 1fr); }
+      .feature-item.reverse { grid-template-areas: "text image"; }
+      .feature-item.reverse .feature-text { grid-area: text; }
+      .feature-item.reverse .feature-image { grid-area: image; }
+    }
+    .feature-image img { width: 100%; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+
+    /* CTA BUTTON */
+    .cta-button {
+      display: inline-block;
+      background: var(--accent-gold); color: var(--background-dark);
+      padding: 16px 40px; border-radius: 12px; text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(234, 179, 8, 0.3);
+    }
+    .cta-button:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 8px 30px rgba(234, 179, 8, 0.5); }
+    
+    /* BACK TO TOP & FOOTER */
+    #backToTop { /* unchanged */ }
+    footer { text-align:center; padding: 50px 20px; background: #0c1017; border-top: 1px solid var(--glass-border); }
+
+    /* ANIMATIONS */
+    .reveal { opacity: 0; transform: translateY(60px); transition: opacity 1s, transform 0.8s; transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>II. Világháború Oktatóoldal</h1>
-      <div class="ora-container">
-        <span id="digitalis-ora">00:00:00</span>
-      </div>      
-      <button id="theme-toggle">🌙 / ☀️</button>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="tananyag.html">Tananyag</a></li>
-        <li><a href="interaktiv.html">Teszt & Játék</a></li>
-      </ul>
+
+  <header>
+    <nav id="navbar">
+      <a href="#welcome" class="active">Welcome</a>
+      <a href="#story">The Story</a>
+      <a href="#experience">The Experience</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#info">Plan Your Visit</a>
     </nav>
-    <main>
-      <section class="intro">
-        <h2>Üdvözlünk az oktatóoldalon!</h2>
-        <p>Fedezd fel a II. világháború eseményeit tananyag, teszt és játék segítségével.</p>
-        <section class="features">
-          <h3>Mit találsz az oldalon?</h3>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text-wrapper">
+        <h1 class="reveal">Nádasdy Castle</h1>
+        <p class="hero-subtitle reveal" style="transition-delay: 0.2s;">A Timeless Experience, Reimagined</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section id="welcome" class="content-section reveal">
+          <h2>Step Beyond History</h2>
+          <p>This is more than a museum. It's a portal. At Nádasdy Castle, we've fused 19th-century grandeur with 21st-century innovation to create an experience that's interactive, immersive, and unforgettable. Explore, play, and connect with a noble legacy in a setting that's as forward-thinking as it is historic. Your journey begins here.</p>
+      </section>
+      
+      <section id="story" class="content-section reveal">
           <div class="feature-grid">
-            <div class="feature-item">
-              <div class="emoji-icon">📘</div>
-              <h4>Tananyag</h4>
-              <p>Részletes és közérthető tananyag a háború eseményeiről.</p>
-            </div>
-            <div class="feature-item">
-              <div class="emoji-icon">🧠</div>
-              <h4>Teszt</h4>
-              <p>Ellenőrizd a tudásod izgalmas kvízekkel!</p>
-            </div>
-            <div class="feature-item">
-              <div class="emoji-icon">🎮</div>
-              <h4>Játék</h4>
-              <p>Memóriajáték, ami játékosan tanít.</p>
-            </div>
+              <div class="feature-item">
+                  <div class="feature-text">
+                      <h2>A Legacy of Love & Innovation</h2>
+                      <p>Born from a romance between Count Ferenc Nádasdy and Countess Ilona Zichy, this Tudor-style marvel was a masterpiece of its time. Completed in 1876, it boasted then-futuristic technology like central heating and a telephone system. After its revival through the National Castle Program, the castle now stands as a testament to both its romantic soul and its innovative spirit.</p>
+                  </div>
+                  <div class="feature-image">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/N%C3%A1dasdy_Castle_interior_-_library.jpg" alt="The magnificent two-story library">
+                  </div>
+              </div>
           </div>
-        </section>
-        
       </section>
 
+      <section id="experience" class="content-section reveal">
+        <h2>The Experience</h2>
+        <p>Forget passive observation. Our exhibition, "The Legend of the Castle, Revived," puts you at the heart of the narrative.</p>
+        <ul>
+          <li><strong>Digital Storytelling:</strong> Unlock augmented reality layers and untold stories with your personal tablet guide.</li>
+          <li><strong>Ancestors Awakened:</strong> Witness the Nádasdy family portraits come alive in the Hall of Ancestors, sharing their tales through digital magic.</li>
+          - <li><strong>History in Your Hands:</strong> Create your own memories by trying on period costumes or sending a message on a vintage telegraph.</li>
+        </ul>
+      </section>
       
-    </main>
-    <footer>
-      <p>Készítette: Virág Barnabás | 2025</p>
-    </footer>
-  </div>
+      <section id="gallery" class="reveal">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <a href="#"><img src="DJI_0581_2.2-500x500.jpg" alt="Hall of Ancestors"></a>
+          <a href="#"><img src="nadasdweb6-scaled.jpg" alt="Elegant wooden staircase"></a>
+          <a href="#"><img src="nadasdweb8-scaled.jpg" alt="Conservatory cafe"></a>
+          <a href="#"><img src="dsc03466-scaled.jpg" alt="Castle and lake"></a>
+        </div>
+      </section>
+
+      <section id="info" class="content-section reveal">
+          <h2>Claim Your Ticket to the Past</h2>
+          <p style="text-align: center; max-width: 60ch; margin: 0 auto 30px;">Book online to secure your preferred time. We look forward to welcoming you.</p>
+          <div style="text-align: center;">
+              <a href="https://nadasdladanyikastely.hu/jegyvasarlas/" target="_blank" class="cta-button">Book Your Journey</a>
+          </div>
+      </section>
+    </div>
+  </main>
+  
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <footer>
+    <p>© Nádasdy Castle, Nádasdladány. Where legacy meets innovation.</p>
+  </footer>
+
+  <script>
+    // --- 3D Hero Text on Mouse Move ---
+    const heroText = document.querySelector('.hero-text-wrapper');
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const { offsetWidth, offsetHeight } = hero;
+      const x = (clientX / offsetWidth - 0.5) * 30; // -15 to 15
+      const y = (clientY / offsetHeight - 0.5) * 30; // -15 to 15
+      heroText.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    
+    // --- Nav Highlighter on Scroll ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#navbar a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 150) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // --- Reveal on Scroll ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // --- Back to Top ---
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
 </body>
 </html>
